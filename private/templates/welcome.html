@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>MailBot by espaciomore</title>
+  </head>
+  <body>
+    <style>{{ style }}</style>
+    <h3>Welcome to MailBot</h3>
+    <p>Dear {{ name }},</p>
+    <p>Thank you for joining MailBot where you can follow up your clients just we do.</p>
+    <p>We would like your recommendation to your friends, please share!</p>
+    <form action="http://192.168.2.10/invite" method="POST">
+      <input id="rName" name="rName" type="text" value="{{ name }}" class="hidden"/>
+      <input id="rEmail" name="rEmail" type="text" value="{{ email }}" class="hidden"/>
+      <input id="email" name="email" type="text" placeholder="Enter friend's e-mail"/>
+      <button type="submit">Invite</button>
+    </form>
+  </body>
+</html>

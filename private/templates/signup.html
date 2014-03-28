@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>MailBot by espaciomore</title>
+  </head>
+  <body>
+    <style>{{ style }}</style>
+    <h3>MailBot</h3>
+    <p>Let us take care of your relationship with your clients like we do with you.</p>
+    <form action="http://192.168.2.10/signup" method="POST">
+      <input id="rName" name="rName" type="text" value="{{ rName }}" class="hidden"/>
+      <input id="rEmail" name="rEmail" type="text" value="{{ rEmail }}" class="hidden"/>
+      <input id="name" name="name" type="text" placeholder="Enter you name"/>
+      <input id="email" name="email" type="text" placeholder="Enter friend's e-mail" value="{{ email }}"/>
+      <button type="submit">Sing up</button>
+    </form>
+  </body>
+</html>
