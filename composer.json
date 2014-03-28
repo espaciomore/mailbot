@@ -1,0 +1,15 @@
+{
+  "authors":[
+    {
+      "name":"espaciomore",
+      "email":"espaciomore@gmail.com",
+      "homepage":"http://espaciomore.com"
+    }
+  ],
+  "license":"GPL-3.0+",
+  "version":"1.0.0-dev",
+  "require":{
+    "silex/silex": "~1.1",
+    "twig/twig": "1.*"
+  }
+}
