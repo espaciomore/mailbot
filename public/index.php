@@ -23,7 +23,7 @@ $send_mail = function($to,$sub,$msg){
 
 $app->get('/',function() use($app,$twig){
   $css = file_get_contents('style.css');
-  return $twig->render('index.html',array('style'=>$css));
+  return $twig->render('index.html',array('css'=>$css));
 });
 
 $app->get('/signup',function(Request $req) use($app,$twig){
@@ -31,7 +31,7 @@ $app->get('/signup',function(Request $req) use($app,$twig){
   $rEmail = $req->get('rEmail');
   $email = $req->get('email');
   $css = file_get_contents('style.css');
-  return $twig->render('signup.html',array('rName'=>$rName,'rEmail'=>$rEmail,'email'=>$email,'style'=>$css));
+  return $twig->render('signup.html',array('rName'=>$rName,'rEmail'=>$rEmail,'email'=>$email,'css'=>$css));
 });
 
 $app->post('/invite',function(Request $req) use($app,$twig,$send_mail){
@@ -39,7 +39,7 @@ $app->post('/invite',function(Request $req) use($app,$twig,$send_mail){
   $rEmail = $req->get('rEmail');
   $email = $req->get('email');
   $css = file_get_contents('style.css');
-  $message = $twig->render('invitation.html',array('rName'=>$rName,'rEmail'=>$rEmail,'email'=>$email,'style'=>$css));
+  $message = $twig->render('invitation.html',array('rName'=>$rName,'rEmail'=>$rEmail,'email'=>$email,'css'=>$css));
   $sent = $send_mail($email, $rName.' invited you to MailBot', $message,'Content-type: text/html; charset=iso-8859-1' . "\r\n");
   return new Response($sent ? 'OK':'Mailing Problem', $sent ? 201:500);
 });
@@ -48,7 +48,7 @@ $app->post('/signup',function(Request $req) use($app,$twig,$send_mail){
   $email = $req->get('email');
   $name = $req->get('name');
   $css = file_get_contents('style.css');
-  $message = $twig->render('welcome.html',array('name'=>$name,'email'=>$email,'style'=>$css));
+  $message = $twig->render('welcome.html',array('name'=>$name,'email'=>$email,'css'=>$css));
   $sent = $send_mail($email,'Welcome to MailBot', $message);
   return new Response($sent ? 'OK':'Mailing Problem', $sent ? 201:500);
 });
