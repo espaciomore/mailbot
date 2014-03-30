@@ -3,10 +3,19 @@
     <title>MailBot by espaciomore</title>
   </head>
   <body>
-    <style>{{ css }}</style>
+    <script type="text/stylesheet">
+    {% autoescape false %}
+      {{ css }}
+    {% endautoescape %}
+    </script>
     <h3>MailBot</h3>
     <p>A fast growing startup company dedicated to serving you through managing<br/> 
       newsletter chains so you can follow up your clients just like we do, please<br/> 
-      <a href="http://192.168.2.10/signup">sign up now</a>!</p>
+      <a href="http://192.168.2.10/signup" class="btn btn-primary">sign up now</a>!</p>
+    <script type="text/javascript">
+    {% autoescape false %}
+      {{ js }}
+    {% endautoescape %}
+    </script>
   </body>
 </html>
