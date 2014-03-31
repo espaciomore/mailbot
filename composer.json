@@ -11,5 +11,8 @@
   "require":{
     "silex/silex": "~1.1",
     "twig/twig": "1.*"
+  },
+  "autoload": {
+    "psr-4": {"Mailbot\\": "private/mailbot/"}
   }
 }

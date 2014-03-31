@@ -3,15 +3,20 @@
     <title>MailBot by espaciomore</title>
   </head>
   <body>
-    <script type="text/stylesheet">
+    <style>
     {% autoescape false %}
       {{ css }}
     {% endautoescape %}
-    </script>
-    <h3>MailBot</h3>
-    <p>A fast growing startup company dedicated to serving you through managing<br/> 
-      newsletter chains so you can follow up your clients just like we do, please<br/> 
-      <a href="http://192.168.2.10/signup" class="btn btn-primary">sign up now</a>!</p>
+    </style>
+    <div class="description">
+      <h3>MailBot</h3>
+      <p>A fast growing startup company dedicated to serving you through managing<br/> 
+        newsletter chains so you can follow up your clients just like we do.
+      </p>
+      <a href="http://192.168.2.10/signup">
+        <button class="btn btn-primary">sign up now</button>
+      </a>
+    </div>
     <script type="text/javascript">
     {% autoescape false %}
       {{ js }}
