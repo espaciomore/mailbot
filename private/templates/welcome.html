@@ -14,7 +14,7 @@
       <p>Thank you for joining MailBot where you can follow up your clients just we do.</p>
       <p>We would like your recommendation to your friends, please share!</p>
     </div>
-    <form action="http://192.168.2.10/invite" method="POST" role="form" class="form-inline">
+    <form action="{{ conf['url'] }}/invite" method="POST" role="form" class="form-inline">
       <div class="form-group">
         <input id="rName" name="rName" type="text" value="{{ name }}" class="hidden form-control input-sm"/>
       </div>

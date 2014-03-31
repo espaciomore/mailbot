@@ -12,7 +12,7 @@
       <h3>MailBot</h3>
       <p>Let us take care of your relationship with your clients like we do with you.</p>
     </div>
-    <form action="http://192.168.2.10/signup" method="POST" role="form" class="form-inline">
+    <form action="{{ conf['url'] }}/signup" method="POST" role="form" class="form-inline">
       <div class="form-group">
         <input id="rName" name="rName" type="text" value="{{ rName }}" class="hidden form-control input-sm"/>
       </div>

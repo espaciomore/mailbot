@@ -25,6 +25,10 @@ abstract class App
       return new \Twig_Environment($loader);
     });
 
+    $app['conf'] = $app->share(function(){
+      return json_decode(file_get_contents(__DIR__.'/conf.json'));
+    });
+
     $app['mail'] = $app->protect(function($to,$sub,$msg){
       $headers  = 'MIME-Version: 1.0' . "\r\n";
       $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
@@ -58,37 +62,41 @@ abstract class App
     $app = static::$instance;
     static::$routes = array(
       array('method'=>'GET','name'=>'/','callback'=>function() use($app){
+        $conf = $app['conf'];
         $css = $app['css'];
         $js = $app['js'];
         $template_engine = $app['template_engine'];
-        return $template_engine->render('index.html',array('css'=>$css(),'js'=>$js()));
+        return $template_engine->render('index.html',array('conf'=>$conf,'css'=>$css(),'js'=>$js()));
       }),
       array('method'=>'GET','name'=>'/signup','callback'=>function(\Symfony\Component\HttpFoundation\Request $req) use($app){
         $rName = $req->get('rName');
         $rEmail = $req->get('rEmail');
         $email = $req->get('email');
+        $conf = $app['conf'];
         $css = $app['css'];
         $template_engine = $app['template_engine'];
-        return $template_engine->render('signup.html',array('rName'=>$rName,'rEmail'=>$rEmail,'email'=>$email,'css'=>$css()));
+        return $template_engine->render('signup.html',array('rName'=>$rName,'rEmail'=>$rEmail,'email'=>$email,'conf'=>$conf,'css'=>$css()));
       }),
       array('method'=>'POST','name'=>'/invite','callback'=>function(\Symfony\Component\HttpFoundation\Request $req) use($app){
         $rName = $req->get('rName');
         $rEmail = $req->get('rEmail');
         $email = $req->get('email');
+        $conf = $app['conf'];
         $css = $app['css'];
         $template_engine = $app['template_engine'];
         $mail = $app['mail'];
-        $message = $template_engine->render('invitation.html',array('rName'=>$rName,'rEmail'=>$rEmail,'email'=>$email,'css'=>$css()));
-        $sent = $mail($email, $rName.' invited you to MailBot', $message,'Content-type: text/html; charset=iso-8859-1' . "\r\n");
+        $message = $template_engine->render('invitation.html',array('rName'=>$rName,'rEmail'=>$rEmail,'email'=>$email,'conf'=>$conf,'css'=>$css()));
+        $sent = $mail($email, $rName.' invited you to MailBot', $message);
         return new \Symfony\Component\HttpFoundation\Response($sent ? 'OK':'Mailing Problem', $sent ? 201:500);
       }),
       array('method'=>'POST','name'=>'/signup','callback'=>function(\Symfony\Component\HttpFoundation\Request $req) use($app){
         $email = $req->get('email');
         $name = $req->get('name');
+        $conf = $app['conf'];
         $css = $app['css'];
         $template_engine = $app['template_engine'];
         $mail = $app['mail'];
-        $message = $template_engine->render('welcome.html',array('name'=>$name,'email'=>$email,'css'=>$css()));
+        $message = $template_engine->render('welcome.html',array('name'=>$name,'email'=>$email,'conf'=>$conf,'css'=>$css()));
         $sent = $mail($email,'Welcome to MailBot', $message);
         return new \Symfony\Component\HttpFoundation\Response($sent ? 'OK':'Mailing Problem', $sent ? 201:500);
       })  
