@@ -86,7 +86,7 @@ abstract class App
         $template_engine = $app['template_engine'];
         $mail = $app['mail'];
         $message = $template_engine->render('invitation.html',array('rName'=>$rName,'rEmail'=>$rEmail,'email'=>$email,'conf'=>$conf,'css'=>$css()));
-        $sent = $mail($email, $rName.' invited you to MailBot', $message);
+        $sent = $mail($email, $rName.' invited you to MailBot', Inliner::transform($message));
         return new \Symfony\Component\HttpFoundation\Response($sent ? 'OK':'Mailing Problem', $sent ? 201:500);
       }),
       array('method'=>'POST','name'=>'/signup','callback'=>function(\Symfony\Component\HttpFoundation\Request $req) use($app){
@@ -97,7 +97,7 @@ abstract class App
         $template_engine = $app['template_engine'];
         $mail = $app['mail'];
         $message = $template_engine->render('welcome.html',array('name'=>$name,'email'=>$email,'conf'=>$conf,'css'=>$css()));
-        $sent = $mail($email,'Welcome to MailBot', $message);
+        $sent = $mail($email,'Welcome to MailBot', Inliner::transform($message));
         return new \Symfony\Component\HttpFoundation\Response($sent ? 'OK':'Mailing Problem', $sent ? 201:500);
       })  
     );

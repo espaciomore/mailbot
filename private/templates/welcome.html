@@ -3,7 +3,7 @@
     <title>MailBot by espaciomore</title>
   </head>
   <body>
-    <style>
+    <style type="text/css">
     {% autoescape false %}
       {{ css }}
     {% endautoescape %}
@@ -11,7 +11,7 @@
     <div class="description">
       <h3>Welcome to MailBot</h3>
       <p>Dear {{ name }},</p>
-      <p>Thank you for joining MailBot where you can follow up your clients just we do.</p>
+      <p>Thank you for joining MailBot where you can follow up your clients just like we do.</p>
       <p>We would like your recommendation to your friends, please share!</p>
     </div>
     <form action="{{ conf['url'] }}/invite" method="POST" role="form" class="form-inline">

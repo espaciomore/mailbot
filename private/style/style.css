@@ -1,7 +1,7 @@
 /* general style tag content */
 .hidden {
-  display: none;
+  display: none !important;
 }
 .description {
-	padding: 10px;
+  padding: 10px;
 }
