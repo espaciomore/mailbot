@@ -38,11 +38,19 @@ abstract class Inliner
       switch ($c) {
         case '{':
           $a = array();
-          foreach ($tmp as $i => $s) {
+          foreach ($tmp as $j => $s) {
             $a[] = $s['sel'];
           }
           $a[] = trim($w);
-          $tmp[] = array('sel'=>implode(' ',$a),'props'=>array());
+          $sel = '';
+          foreach ($a as $j => $name) {
+            if ( $name[0] === '#' or $name[0] === '.') {
+              $sel = $sel . $name;
+            } else {
+              $sel = $sel . ' ' . $name;
+            }
+          }
+          $tmp[] = array('sel'=>$sel,'props'=>array());
           break;
         case ';':
           $kv = split(':',trim($w));
@@ -59,7 +67,7 @@ abstract class Inliner
       }
       $w = "";
     }
-
+    
     return $selectors;
   }
 }
