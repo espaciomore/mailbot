@@ -66,7 +66,7 @@ abstract class App
         $css = $app['css'];
         $js = $app['js'];
         $template_engine = $app['template_engine'];
-        return $template_engine->render('index.html',array('conf'=>$conf,'css'=>$css(),'js'=>$js()));
+        return $template_engine->render('index.html',array('conf'=>$conf,'css'=>$css(),'js'=>$js().$js('facebook.js')));
       }),
       array('method'=>'GET','name'=>'/signup','callback'=>function(\Symfony\Component\HttpFoundation\Request $req) use($app){
         $rName = $req->get('rName');
